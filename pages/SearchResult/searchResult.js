@@ -13,19 +13,24 @@ function getHeroes(value){
 
             console.log(response.data.results)
             var count = 0;
-            response.data.results.forEach(function(item){
-                count++;
-                var aux = item.thumbnail.path.split('/');
-                if(aux[aux.length - 1] != 'image_not_available'){
-                    $('.results').append('<div data-codigo="' + item.id + '" class="result-item"><img src="' + item.thumbnail.path + '.jpg"/><div class="name-wrapper"><p class="m-0">' + item.name + '</p></div></div>')
-                }else{
-                    $('.results').append('<div data-codigo="' + item.id + '" class="result-item"><img src="../../assets/img/image_not_available.jpg"/><div class="name-wrapper"><p class="m-0">' + item.name + '</p></div></div>')
+            if(response.data.results.length > 0){
+                response.data.results.forEach(function(item){
+                    count++;
+                    var aux = item.thumbnail.path.split('/');
+                    if(aux[aux.length - 1] != 'image_not_available'){
+                        $('.results').append('<div data-codigo="' + item.id + '" class="result-item"><img src="' + item.thumbnail.path + '.jpg"/><div class="name-wrapper"><p class="m-0">' + item.name + '</p></div></div>')
+                    }else{
+                        $('.results').append('<div data-codigo="' + item.id + '" class="result-item"><img src="../../assets/img/image_not_available.jpg"/><div class="name-wrapper"><p class="m-0">' + item.name + '</p></div></div>')
+                    }
+                })
+                $('.result-item').off().on('click', function(){
+                    redirectToHero($(this).data('codigo'));
+                });
+                if(count >= response.data.results.length ){
+                    hideLoader();
                 }
-            })
-            $('.result-item').off().on('click', function(){
-                redirectToHero($(this).data('codigo'));
-            });
-            if(count >= response.data.results.length ){
+            }else{
+                $('.results').append('<p style="color: #dedede; font-size: 20px">Nenhum resultado encontrado...</p>')
                 hideLoader();
             }
         }
