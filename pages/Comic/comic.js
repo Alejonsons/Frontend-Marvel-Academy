@@ -9,15 +9,20 @@ $(document).ready(function(){
 function getFavoriteComics(){
     var user_id = localStorage.getItem('@marvel:id')
     
-    $.ajax({
-        dataType: "json",
-        contentType:'application/json',
-        method: 'GET',
-        url: `http://localhost:8088/comics/${user_id}`,
-        success: function(response){
-            getComicInfo(getParam(), response)
-        }
-    });
+    if(isLogged()){
+        $.ajax({
+            dataType: "json",
+            contentType:'application/json',
+            method: 'GET',
+            url: `http://localhost:8088/comics/${user_id}`,
+            success: function(response){
+                getComicInfo(getParam(), response)
+            }
+        });
+    }else{
+        getComicInfo(getParam(), 0)
+    }
+    
 }
 
 function getComicInfo(id, favoritos){
@@ -33,17 +38,22 @@ function getComicInfo(id, favoritos){
                 $('.comic-info').append('<div class="col-sm-1 d-flex justify-content-end" style="height: fit-content"><i data-codigo=' + response.data.results[0].id + ' class="far fa-star star-no-favorite" style="font-size: 28px; cursor: pointer;"></i><i data-codigo=' + response.data.results[0].id + ' class="fas fa-star star-favorite" style="font-size: 28px; cursor: pointer; display: none"></i></div>')
             }
 
-            favoritos.forEach(function(fav){
-                var isFavorite = false;
-                if(fav.id_comic == id){
-                    isFavorite = true;
-                    $('.star-favorite').show();
-                    $('.star-no-favorite').hide();
-                }
-                if(isFavorite){
-                    $('.star-no-favorite').hide();
-                }
-            });
+            if(favoritos != 0 || favoritos.length == 0){
+                favoritos.forEach(function(fav){
+                    var isFavorite = false;
+                    if(fav.id_comic == id){
+                        isFavorite = true;
+                        $('.star-favorite').show();
+                        $('.star-no-favorite').hide();
+                    }
+                    if(isFavorite){
+                        $('.star-no-favorite').hide();
+                    }
+                });
+            }else{
+                $('.star-no-favorite').hide();
+            }
+            
 
             $('.star-no-favorite').off().on('click', function(){
                 var id_comic = getParam();
