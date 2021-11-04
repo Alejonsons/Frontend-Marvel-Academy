@@ -1,0 +1,30 @@
+.bg-fundo {
+    background-image: url("../../assets/img/background.jpg");
+    background-size: cover;
+    height: 100%;
+    background-repeat: repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: grayscale(1) brightness(0.2);
+}
+
+.formAccount{
+    background: #2A2A2A;
+    position: relative;
+    height: auto;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    margin: 50px auto;
+}
+
+.formWrapper{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}

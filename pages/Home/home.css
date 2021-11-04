@@ -1,0 +1,29 @@
+.bg-fundo {
+    background-image: url("../../assets/img/background.jpg");
+    background-size: cover;
+    height: auto;
+    background-repeat: repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: grayscale(1) brightness(0.2);
+}
+
+#heroes-slick{
+    max-width: 95%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#heroes-slick img{
+    width: 250px !important;
+    cursor: pointer;
+}
+
+#heroes-slick img:hover{
+    transform: scale(1.1);
+    transition: all ease-in-out 0.25s;
+}

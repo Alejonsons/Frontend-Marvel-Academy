@@ -1,0 +1,64 @@
+.bg-fundo {
+    background-image: url("../../assets/img/background.jpg");
+    background-size: cover;
+    height: auto;
+    background-repeat: repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: grayscale(1) brightness(0.2);
+}
+
+.results-wrapper{
+    background: #2A2A2A;
+    position: relative;
+    height: auto;
+    width: 90vw;
+    padding: 15px;
+    margin: 50px auto;
+}
+
+.results{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.result-item{
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    background-color: #474747;
+    max-width: 150px;
+}
+
+.result-item:hover{
+    transform: scale(1.05);
+    box-shadow: 8px 5px 5px black;
+    transition: all ease-out 0.25s;
+}
+
+.result-item img{
+    border-radius: 10px;
+    height: 150px;
+    width: 150px;
+}
+
+.result-item p{
+    color: white;
+    word-wrap: break-word;
+}
+
+.name-wrapper{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

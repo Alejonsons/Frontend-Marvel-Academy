@@ -1,0 +1,61 @@
+.bg-fundo {
+    background-image: url("../../assets/img/background.jpg");
+    background-size: cover;
+    height: auto;
+    background-repeat: repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: grayscale(1) brightness(0.2);
+}
+
+.hero-info-wrapper{
+    background: #2A2A2A;
+    position: relative;
+    height: auto;
+    width: 90%;
+    margin: 50px auto;
+}
+
+.hero-info{
+    padding: 15px;
+    display: flex;
+}
+
+#comics-slick{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.comic{
+    max-width: 200px;
+    cursor: pointer;
+    margin: 15px;
+}
+
+.comic:hover{
+    transform: scale(1.1);
+    transition: all ease-out 0.25s;
+    box-shadow: 10px 5px 5px black;
+}
+
+.star-favorite{
+    color: yellow;
+}
+
+.star-no-favorite{
+    color: white;
+}
+
+.star-favorite:hover{
+    transform: scale(1.3);
+    transition: all ease-out 0.25s;
+}
+
+.star-no-favorite:hover{
+    transform: scale(1.3);
+    transition: all ease-out 0.25s;
+}
