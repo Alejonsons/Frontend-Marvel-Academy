@@ -8,17 +8,22 @@ $(document).ready(function(){
 
 function getFavoriteHeroes(){
     var user_id = localStorage.getItem('@marvel:id')
-    
-    $.ajax({
-        dataType: "json",
-        contentType:'application/json',
-        method: 'GET',
-        url: `http://localhost:8088/heroes/${user_id}`,
-        success: function(response){
-            getHeroInfo(getParam(), response)
-        }
-    });
+    console.log(isLogged())
+    if(isLogged()){
+        $.ajax({
+            dataType: "json",
+            contentType:'application/json',
+            method: 'GET',
+            url: `http://localhost:8088/heroes/${user_id}`,
+            success: function(response){
+                getHeroInfo(getParam(), response)
+            }
+        });
+    }else{
+        getHeroInfo(getParam(), 0)
+    }
 }
+    
 
 function getHeroInfo(id, favoritos){
     $.ajax({
@@ -34,18 +39,23 @@ function getHeroInfo(id, favoritos){
                 $('.hero-info').append('<div class="col-sm-8"><p style="color: white; padding: 10px; font-size: 22px">Oops... Description not found!</p></div>');
                 $('.hero-info').append('<div class="col-sm-1 d-flex justify-content-end" style="height: fit-content"><i data-codigo=' + response.data.results[0].id + ' class="far fa-star star-no-favorite" style="font-size: 28px; cursor: pointer;"></i><i data-codigo=' + response.data.results[0].id + ' class="fas fa-star star-favorite" style="font-size: 28px; cursor: pointer; display: none"></i></div>')
             }
-
-            favoritos.forEach(function(fav){
-                var isFavorite = false;
-                if(fav.id_hero == id){
-                    isFavorite = true;
-                    $('.star-favorite').show();
-                    $('.star-no-favorite').hide();
-                }
-                if(isFavorite){
-                    $('.star-no-favorite').hide();
-                }
-            });
+            
+            if(favoritos != 0 || favoritos.length == 0){
+                console.log('é')
+                favoritos.forEach(function(fav){
+                    var isFavorite = false;
+                    if(fav.id_hero == id){
+                        isFavorite = true;
+                        $('.star-favorite').show();
+                        $('.star-no-favorite').hide();
+                    }
+                    if(isFavorite){
+                        $('.star-no-favorite').hide();
+                    }
+                });
+            }else{
+                $('.star-no-favorite').hide()
+            }
 
             $('.star-no-favorite').off().on('click', function(){
                 var id_hero = getParam();

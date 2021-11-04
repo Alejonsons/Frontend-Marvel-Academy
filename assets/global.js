@@ -10,6 +10,9 @@ $(document).ready(function(){
     if(url[url.length - 2] != 'Home'){
         $('<div class="load"><img src="../../assets/img/load.gif" /></div>').appendTo('body');
     }
+    if(url[url.length - 2] == 'FormAccount'){
+        $('.load').remove();
+    }
     var user = localStorage.getItem('@marvel:username');
     if(user){
         $('#btn-convidado').hide();
@@ -31,6 +34,15 @@ function showLoader(){
 
 function hideLoader(){
     $('.load').hide();
+}
+
+function isLogged(){
+    var user = localStorage.getItem('@marvel:id');
+    if(user){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function redirectToHero(id){
